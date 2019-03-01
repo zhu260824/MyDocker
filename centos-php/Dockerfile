@@ -19,5 +19,7 @@ RUN yum install -y wget && wget -O install.sh http://download.bt.cn/install/inst
 
 EXPOSE 22
 EXPOSE 8888
+EXPOSE 80
+EXPOSE 88
 
 CMD ["/run.sh"]
