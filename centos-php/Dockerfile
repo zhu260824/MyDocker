@@ -15,7 +15,7 @@ RUN chmod +x /*.sh
 ENV AUTHORIZED_KEYS **None**
 
 RUN yum clean all && yum update -y
-RUN yum install -y wget && wget -O install.sh http://download.bt.cn/install/install_6.0.sh
+RUN yum install -y wget && wget -O install.sh http://download.bt.cn/install/install.sh
 
 EXPOSE 22
 EXPOSE 8888
