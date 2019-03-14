@@ -3,7 +3,7 @@ cd /home/android/android-sdk-linux/platforms
 count=`ls $*|wc -w`
 if [ "$count" > "0" ];
 then
- yes | sudo android update sdk --no-ui
+ echo y | android update sdk --no-ui
 else
  echo "android is init"
 fi
