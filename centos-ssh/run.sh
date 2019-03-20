@@ -1,5 +1,9 @@
 #!/bin/bash
 
+if [ ! -f /usr/sbin/init ]; then
+    /usr/sbin/init
+fi
+
 if [ "${AUTHORIZED_KEYS}" != "**None**" ]; then
     echo "=> Found authorized keys"
     mkdir -p /root/.ssh
