@@ -11,6 +11,17 @@ ENV GRADLE_HOME=/home/gradle/gradle-5.1
 ENV ANDROID_HOME=/home/android/android-sdk-linux
 ENV PATH=$JAVA_HOME/bin:$M2_HOME/bin:$GRADLE_HOME/bin:$ANDROID_HOME/tools:$PATH
 
+RUN yum install -y python-setuptools
+
+RUN easy_install supervisor
+
+ADD supervisord.conf /etc/supervisord.conf
+
+RUN mkdir -p /etc/supervisor.conf.d && \
+    mkdir -p /var/log/supervisor
+
+ADD supervisor_tomcat.conf /etc/supervisor.conf.d/tomcat.conf
+
 RUN mkdir /usr/lib/java && \
 	mkdir /home/java && \
 	cd /home/java && \
@@ -38,5 +49,10 @@ RUN mkdir /home/android && \
     wget https://zl-file-china.oss-cn-beijing.aliyuncs.com/android-sdk_r24.4.1-linux.tgz && \
     tar -zvxf android-sdk_r24.4.1-linux.tgz
 
+ADD run.sh /run.sh
+RUN chmod +x /*.sh
+
 EXPOSE 22
 EXPOSE 8080
+
+CMD ["/run.sh"]

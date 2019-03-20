@@ -13,11 +13,11 @@ echo "root:$PASS" | chpasswd
 echo "=> Done!"
 touch /.root_pw_set
 
-echo "========================================================================"
-echo "You can now connect to this CentOS container via SSH using:"
-echo ""
-echo "    ssh -p <port> root@<host>"
-echo "and enter the root password '$PASS' when prompted"
-echo ""
-echo "Please remember to change the above password as soon as possible!"
-echo "========================================================================"
+echo "========================================================================" > root.txt
+echo "You can now connect to this CentOS container via SSH using:" >> root.txt
+echo ""  >> root.txt
+echo "    ssh -p <port> root@<host>"  >> root.txt
+echo "and enter the root password '$PASS' when prompted"  >> root.txt
+echo ""  >> root.txt
+echo "Please remember to change the above password as soon as possible!"  >> root.txt
+echo "========================================================================"  >> root.txt
