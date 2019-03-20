@@ -1,10 +1,7 @@
-FROM zhu260824/centos-ssh:v1.0
+FROM zhu260824/centos-ssh:latest
 MAINTAINER ZHULIN <871707394@qq.com>
 
 RUN yum install -y vim && yum install -y git && yum install -y wget
-
-ADD run.sh /run.sh
-RUN chmod +x /*.sh
 
 ENV JAVA_HOME=/usr/lib/java/jdk1.8.0_161
 ENV JRE_HOME=$JAVA_HOME/jre
@@ -43,4 +40,3 @@ RUN mkdir /home/android && \
 
 EXPOSE 22
 EXPOSE 8080
-CMD ["/run.sh"]
