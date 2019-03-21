@@ -34,4 +34,5 @@ RUN mkdir /usr/lib/tomcat && \
 
 EXPOSE 22
 EXPOSE 8080
-EXPOSE 433
+
+CMD ["/run.sh"]

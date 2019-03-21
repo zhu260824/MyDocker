@@ -1,4 +1,5 @@
 FROM zhu260824/centos-ssh:latest
+
 MAINTAINER ZHULIN <871707394@qq.com>
 
 RUN yum install -y vim && yum install -y git && yum install -y wget
@@ -49,10 +50,7 @@ RUN mkdir /home/android && \
     wget https://zl-file-china.oss-cn-beijing.aliyuncs.com/android-sdk_r24.4.1-linux.tgz && \
     tar -zvxf android-sdk_r24.4.1-linux.tgz
 
-ADD run.sh /run.sh
-RUN chmod +x /*.sh
-
 EXPOSE 22
 EXPOSE 8080
 
-CMD ["/run.sh"]
+CMD ["sh", "-c", "/run.sh ; /usr/bin/supervisord -n -c /etc/supervisord.conf"]
