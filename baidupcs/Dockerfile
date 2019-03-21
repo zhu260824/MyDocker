@@ -6,7 +6,7 @@ WORKDIR /
 
 RUN	set -x && \
 	apk add --no-cache --update wget unzip && \
-	wget --no-check-certificate http://qiniu.zoranjojo.top/BaiduPCS-Go-${BAIDUPCS_VERSION}-linux-amd64.zip && \
+	wget --no-check-certificate https://zl-file-china.oss-cn-beijing.aliyuncs.com/baidupcs/BaiduPCS-Go-${BAIDUPCS_VERSION}-linux-amd64.zip && \
 	#wget --no-check-certificate https://github.com/liuzhuoling2011/baidupcs-web/releases/download/${BAIDUPCS_VERSION}/BaiduPCS-Go-${BAIDUPCS_VERSION}-linux-amd64.zip && \
 	unzip BaiduPCS-Go-${BAIDUPCS_VERSION}-linux-amd64.zip && \
 	mv BaiduPCS-Go-${BAIDUPCS_VERSION}-linux-amd64 BaiduPCS && \
