@@ -1,6 +1,6 @@
 FROM ubuntu:16.04
 
-RUN apt-get update && apt-get install -y openssh-server && apt-get install -y vim && apt-get install -y git
+RUN apt-get update && apt-get install -y openssh-server && apt-get install -y vim && apt-get install -y git && apt-get install -y wget
 RUN mkdir /var/run/sshd
 RUN echo 'root:123456' | chpasswd
 RUN sed -i 's/PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config
@@ -18,6 +18,17 @@ ENV M2_HOME=/home/maven/apache-maven-3.6.0
 ENV GRADLE_HOME=/home/gradle/gradle-5.1
 ENV ANDROID_HOME=/home/android/android-sdk-linux
 ENV PATH=$JAVA_HOME/bin:$M2_HOME/bin:$GRADLE_HOME/bin:$ANDROID_HOME/tools:$PATH
+
+RUN apt-get install -y python-setuptools
+
+RUN easy_install supervisor
+
+ADD supervisord.conf /etc/supervisord.conf
+
+RUN mkdir -p /etc/supervisor.conf.d && \
+    mkdir -p /var/log/supervisor
+
+ADD supervisor_tomcat.conf /etc/supervisor.conf.d/tomcat.conf
 
 RUN mkdir /usr/lib/java && \
 	mkdir /home/java && \
@@ -48,6 +59,8 @@ RUN mkdir /home/android && \
 
 EXPOSE 22
 EXPOSE 8080
-EXPOSE 7070
-EXPOSE 433
-CMD ["/usr/sbin/sshd", "-D"]
+
+ADD entrypoint.sh /entrypoint.sh
+RUN chmod +x /*.sh
+
+ENTRYPOINT ["/entrypoint.sh"]
