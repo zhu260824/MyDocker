@@ -53,4 +53,7 @@ RUN mkdir /home/android && \
 EXPOSE 22
 EXPOSE 8080
 
-CMD ["sh", "-c", "/run.sh ; /usr/bin/supervisord -n -c /etc/supervisord.conf"]
+ADD entrypoint.sh /entrypoint.sh
+RUN chmod +x /*.sh
+
+ENTRYPOINT ["/entrypoint.sh"]
