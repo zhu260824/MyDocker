@@ -19,17 +19,6 @@ ENV GRADLE_HOME=/home/gradle/gradle-5.1
 ENV ANDROID_HOME=/home/android/android-sdk-linux
 ENV PATH=$JAVA_HOME/bin:$M2_HOME/bin:$GRADLE_HOME/bin:$ANDROID_HOME/tools:$PATH
 
-RUN apt-get install -y python-setuptools
-
-RUN easy_install supervisor
-
-ADD supervisord.conf /etc/supervisord.conf
-
-RUN mkdir -p /etc/supervisor.conf.d && \
-    mkdir -p /var/log/supervisor
-
-ADD supervisor_tomcat.conf /etc/supervisor.conf.d/tomcat.conf
-
 RUN mkdir /usr/lib/java && \
 	mkdir /home/java && \
 	cd /home/java && \
@@ -60,7 +49,4 @@ RUN mkdir /home/android && \
 EXPOSE 22
 EXPOSE 8080
 
-ADD entrypoint.sh /entrypoint.sh
-RUN chmod +x /*.sh
-
-ENTRYPOINT ["/entrypoint.sh"]
+CMD ["/usr/sbin/sshd", "-D"]
