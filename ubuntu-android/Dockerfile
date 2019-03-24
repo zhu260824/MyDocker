@@ -10,6 +10,8 @@ RUN mkdir /home/android && \
     wget https://zl-file-china.oss-cn-beijing.aliyuncs.com/android-sdk_r24.4.1-linux.tgz && \
     tar -zvxf android-sdk_r24.4.1-linux.tgz
 
+VOLUME ["/root/.jenkins"]
+
 EXPOSE 22
 EXPOSE 8080
 
