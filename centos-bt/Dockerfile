@@ -1,4 +1,4 @@
-FROM zhu260824/centos-ssh:latest
+FROM zhu260824/centos-base:ssh
 MAINTAINER ZHULIN <871707394@qq.com>
 
 RUN yum install -y wget && wget -O install.sh http://download.bt.cn/install/install_6.0.sh
