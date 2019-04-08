@@ -1,4 +1,4 @@
-FROM zhu260824/centos-base:jdk
+FROM zhu260824/centos-base:jdk8
 MAINTAINER ZHULIN <871707394@qq.com>
 
 ADD start.sh /start.sh
