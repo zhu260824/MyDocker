@@ -1,7 +1,7 @@
 FROM alpine:3.8
 
 USER root
-ENV BAIDUPCS_VERSION 3.6.6
+ENV BAIDUPCS_VERSION 3.6.7
 WORKDIR /
 
 RUN	set -x && \
