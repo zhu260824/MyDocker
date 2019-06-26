@@ -8,6 +8,9 @@ ENV PATH=$ANDROID_HOME/tools:$PATH
 VOLUME ["/root/.jenkins"]
 VOLUME ["/mnt/android/android-sdk-linux"]
 
+RUN rm -rf /etc/profile
+ADD profile /etc/profile
+
 EXPOSE 22
 EXPOSE 8080
 

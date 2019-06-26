@@ -5,7 +5,7 @@ MAINTAINER ZHULIN <871707394@qq.com>
 RUN apk --update add --no-cache openssh bash \
   && sed -i s/#PermitRootLogin.*/PermitRootLogin\ yes/ /etc/ssh/sshd_config \
   && echo "root:root" | chpasswd \
-  && rm -rf /var/cache/apk/*
+  && rm -rf /var/cache/apk/* 
 RUN sed -ie 's/#Port 22/Port 22/g' /etc/ssh/sshd_config
 RUN sed -ri 's/#HostKey \/etc\/ssh\/ssh_host_key/HostKey \/etc\/ssh\/ssh_host_key/g' /etc/ssh/sshd_config
 RUN sed -ir 's/#HostKey \/etc\/ssh\/ssh_host_rsa_key/HostKey \/etc\/ssh\/ssh_host_rsa_key/g' /etc/ssh/sshd_config
@@ -34,6 +34,8 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 ADD run.sh /run.sh
 RUN chmod +x /*.sh
+RUN rm -rf /etc/profile
+ADD profile /etc/profile
 
 VOLUME ["/mnt/maven"]
 VOLUME ["/mnt/gradle"]

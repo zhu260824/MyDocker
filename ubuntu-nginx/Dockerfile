@@ -10,6 +10,6 @@ ADD default.conf /etc/nginx/conf.d/default.conf
 RUN rm -rf /etc/nginx/sites-enabled/default
 
 EXPOSE 22
-EXPOSE 8080
+EXPOSE 80
 
 CMD ["/run.sh"]

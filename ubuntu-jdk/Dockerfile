@@ -11,6 +11,8 @@ ENV PATH=$JAVA_HOME/bin:$M2_HOME/bin:$GRADLE_HOME/bin:$PATH
 
 ADD run.sh /run.sh
 RUN chmod +x /*.sh
+RUN rm -rf /etc/profile
+ADD profile /etc/profile
 
 VOLUME ["/mnt/maven"]
 VOLUME ["/mnt/gradle"]

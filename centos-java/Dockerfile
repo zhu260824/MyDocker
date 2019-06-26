@@ -10,6 +10,9 @@ ENV M2_HOME=/mnt/maven
 ENV GRADLE_HOME=/mnt/gradle
 ENV PATH=$JAVA_HOME/bin:$M2_HOME/bin:$GRADLE_HOME/bin:$PATH
 
+RUN rm -rf /etc/profile
+ADD profile /etc/profile
+
 VOLUME ["/mnt/maven"]
 VOLUME ["/mnt/gradle"]
 VOLUME ["/mnt/jdk1.8.0_202"]
