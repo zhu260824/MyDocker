@@ -2,7 +2,7 @@ FROM ubuntu:18.04
 
 MAINTAINER ZHULIN <871707394@qq.com>
 
-RUN apt-get update && apt-get install -y openssh-server && apt-get install -y vim && apt-get install -y git && apt-get install -y wget
+RUN apt-get update && apt-get install -y openssh-server && apt-get install -y vim && apt-get install -y git && apt-get install -y wget && apt-get install -y tzdata
 
 RUN mkdir /var/run/sshd
 
