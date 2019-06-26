@@ -14,6 +14,7 @@ RUN chmod +x /*.sh
 
 VOLUME ["/mnt/maven"]
 VOLUME ["/mnt/gradle"]
+VOLUME ["/mnt/jdk1.8.0_202"]
 
 EXPOSE 22
 

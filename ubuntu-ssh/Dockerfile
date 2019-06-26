@@ -17,6 +17,8 @@ RUN mkdir /root/.ssh
 RUN apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
+RUN cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+
 EXPOSE 22
 
 CMD ["/run.sh"]

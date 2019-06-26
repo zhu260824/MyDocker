@@ -3,17 +3,16 @@ MAINTAINER ZHULIN <871707394@qq.com>
 
 RUN yum install -y vim && yum install -y git && yum install -y wget
 
-ENV JAVA_HOME=/usr/lib/jdk1.8.0_202
+ENV JAVA_HOME=/mnt/jdk1.8.0_202
 ENV JRE_HOME=$JAVA_HOME/jre
 ENV CLASSPATH=.:$JAVA_HOME/lib:$JRE_HOME/lib
 ENV M2_HOME=/mnt/maven
 ENV GRADLE_HOME=/mnt/gradle
 ENV PATH=$JAVA_HOME/bin:$M2_HOME/bin:$GRADLE_HOME/bin:$PATH
 
-ADD jdk-8u202-linux-x64.tar.gz /usr/lib
-
 VOLUME ["/mnt/maven"]
 VOLUME ["/mnt/gradle"]
+VOLUME ["/mnt/jdk1.8.0_202"]
 
 EXPOSE 22
 

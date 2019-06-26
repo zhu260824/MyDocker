@@ -10,11 +10,12 @@ RUN yum -y install openssh-server epel-release && \
     ssh-keygen -q -N "" -t rsa -f /etc/ssh/ssh_host_rsa_key && \
     sed -i "s/#UsePrivilegeSeparation.*/UsePrivilegeSeparation no/g" /etc/ssh/sshd_config
 
-ADD set_root_pw.sh /set_root_pw.sh
+RUN echo "root:root" | chpasswd
+
+RUN echo "Asia/shanghai" > /etc/timezone;
+
 ADD run.sh /run.sh
 RUN chmod +x /*.sh
-
-ENV AUTHORIZED_KEYS **None**
 
 ENV container docker
 
