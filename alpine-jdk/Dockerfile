@@ -29,6 +29,8 @@ ENV M2_HOME=/mnt/maven
 ENV GRADLE_HOME=/mnt/gradle
 ENV PATH=$JAVA_HOME/bin:$M2_HOME/bin:$GRADLE_HOME/bin:$PATH
 
+RUN /bin/cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && echo 'Asia/Shanghai' >/etc/timezone
+
 ADD run.sh /run.sh
 RUN chmod +x /*.sh
 

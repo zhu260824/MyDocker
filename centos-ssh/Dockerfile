@@ -12,7 +12,7 @@ RUN yum -y install openssh-server epel-release && \
 
 RUN echo "root:root" | chpasswd
 
-RUN echo "Asia/shanghai" > /etc/timezone;
+RUN /bin/cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && echo 'Asia/Shanghai' >/etc/timezone
 
 ADD run.sh /run.sh
 RUN chmod +x /*.sh
