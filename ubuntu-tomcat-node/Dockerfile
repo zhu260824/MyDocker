@@ -8,8 +8,8 @@ RUN chmod +x /*.sh
 ADD sources.list /etc/apt/sources.list
 
 RUN apt-get update && apt-get install -y curl && \
-curl -sL https://deb.nodesource.com/setup_current.x | sudo -E bash -
-sudo apt-get install -y nodejs
+curl -sL https://deb.nodesource.com/setup_current.x | -E bash - && \
+apt-get install -y nodejs
 
 EXPOSE 22
 EXPOSE 8080
