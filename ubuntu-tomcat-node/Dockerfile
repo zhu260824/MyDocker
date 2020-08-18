@@ -8,7 +8,7 @@ RUN chmod +x /*.sh
 ADD sources.list /etc/apt/sources.list
 
 RUN apt-get update && apt-get install -y curl && \
-curl -sL https://deb.nodesource.com/setup_current.x | -E bash - && \
+curl -sL https://deb.nodesource.com/setup_current.x |bash - && \
 apt-get install -y nodejs
 
 EXPOSE 22
