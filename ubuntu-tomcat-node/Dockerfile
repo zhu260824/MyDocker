@@ -1,4 +1,4 @@
-FROM zhu260824/ubuntu-base:tomact8
+FROM zhu260824/ubuntu-base:tomcat8
 
 MAINTAINER ZHULIN <871707394@qq.com>
 
