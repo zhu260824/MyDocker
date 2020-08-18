@@ -9,7 +9,8 @@ ADD sources.list /etc/apt/sources.list
 
 RUN apt-get update && apt-get install -y curl && \
 curl -sL https://deb.nodesource.com/setup_current.x |bash - && \
-apt-get install -y nodejs
+apt-get install -y nodejs && \
+npm install -g cnpm --registry=https://registry.npm.taobao.org
 
 EXPOSE 22
 EXPOSE 8080
