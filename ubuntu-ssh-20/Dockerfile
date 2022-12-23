@@ -4,7 +4,7 @@ MAINTAINER ZHULIN <871707394@qq.com>
 
 RUN  sed -i s@/archive.ubuntu.com/@/mirrors.aliyun.com/@g /etc/apt/sources.list
 
-RUN apt-get update && apt-get install -y openssh-server && apt-get install -y vim && apt-get install -y git && apt-get install -y wget
+RUN apt-get -y update && apt-get install -y openssh-server && apt-get install -y vim && apt-get install -y git && apt-get install -y wget
 RUN mkdir /var/run/sshd
 
 RUN echo 'root:root' |chpasswd
