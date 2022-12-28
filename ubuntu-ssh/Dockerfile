@@ -2,23 +2,33 @@ FROM ubuntu:18.04
 
 MAINTAINER ZHULIN <871707394@qq.com>
 
-RUN apt-get update && apt-get install -y openssh-server && apt-get install -y vim && apt-get install -y git && apt-get install -y wget
-RUN mkdir /var/run/sshd
+RUN apt -y update && apt-get -y upgrade && apt install -y tzdata; \
+    apt clean;
 
-RUN echo 'root:root' |chpasswd
+RUN apt-get install -y sudo && apt-get install -y vim && apt-get install -y git && apt-get install -y wget; \
+    apt clean;
 
-RUN sed -ri 's/^#?PermitRootLogin\s+.*/PermitRootLogin yes/' /etc/ssh/sshd_config
+# sshd
+RUN mkdir /run/sshd; \
+    apt install -y openssh-server; \
+    sed -i 's/^#\(PermitRootLogin\) .*/\1 yes/' /etc/ssh/sshd_config; \
+    sed -i 's/^\(UsePAM yes\)/# \1/' /etc/ssh/sshd_config; \
+    apt clean;
 
-RUN sed -ri 's/UsePAM yes/#UsePAM yes/g' /etc/ssh/sshd_config
+# entrypoint
+RUN { \
+    echo '#!/bin/bash -eu'; \
+    echo 'ln -fs /usr/share/zoneinfo/${TZ} /etc/localtime'; \
+    echo 'echo "root:${ROOT_PASSWORD}" | chpasswd'; \
+    echo 'exec "$@"'; \
+    } > /usr/local/bin/entry_point.sh; \
+    chmod +x /usr/local/bin/entry_point.sh;
 
-RUN mkdir /root/.ssh
+ENV TZ Asia/Shanghai
 
-RUN apt-get clean && \
-    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
-
-ENV TZ=Asia/Shanghai
-RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+ENV ROOT_PASSWORD root
 
 EXPOSE 22
 
-CMD ["/run.sh"]
+ENTRYPOINT ["entry_point.sh"]
+CMD    ["/usr/sbin/sshd", "-D", "-e"]
